@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farzatci</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" href="Logo.svg" type="imag/svg+xml" />
+  </head>
+  <body>
+    <div class="navicon-container">
+      <i class="navbar-icon fa-solid fa-bars"></i>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" class="navbar-link">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="movies.html" class="navbar-link">
+            <i class="fas fa-film"></i>
+            Movies
+          </a>
+        </li>
+        <li>
+          <a href="books.html" class="navbar-link">
+            <i class="fas fa-book"></i>
+            Books
+          </a>
+        </li>
+        <li>
+          <a href="hobbies.html" class="navbar-link">
+            <i class="fas fa-person-skiing"></i>
+            Hobbies
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="navbar-link">
+            <i class="fas fa-diagram-project"></i>
+            Projects
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="back-image">
+      <div class="tag">
+        <a href="#" onclick="scrollToTop(event)">Farzatci</a>
+      </div>
+      <div class="description-box">
+        Professional Yapper - Tsukuba University Senior - Certified Autistic
+        Monkey
+      </div>
+    </div>
+    <div class="hobby-container">
+      <div class="hobby-grid">
+        <a href="movies.html" class="hobby-item">
+          <div class="hobby-item film-item">
+            <span class="film-text">Movies</span>
+            <i class="fa-solid fa-film"></i>
+          </div>
+        </a>
+        <a href="books.html" class="hobby-item">
+          <div class="hobby-item book-item">
+            <span class="film-text">Books</span>
+            <i class="fa-solid fa-book"></i>
+          </div>
+        </a>
+
+        <a href="hobbies.html" class="hobby-item">
+          <div class="hobby-item hobbies-item">
+            <span class="film-text">Hobbies</span>
+            <i class="fa-solid fa-person-skiing"></i>
+          </div>
+        </a>
+        <a href="projects.html" class="hobby-item">
+          <div class="hobby-item projects-item">
+            <span class="film-text">Projects</span>
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="abilities">
+      <h1 class="abilities-header">Abilities</h1>
+      <h2 class="abilities-description">
+        Here is a summary of my most important skills and abilities:
+      </h2>
+      <ul class="ability-list">
+        <li class="ability-title">Coding</li>
+        <li class="ability">
+          <span>Html</span>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </li>
+        <li class="ability-title">Languages</li>
+        <li class="ability">
+          <span>Spanish</span>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div class="socialBar">
+      <a href="https://www.instagram.com/farzatci/">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://discordapp.com/users/bootywizard002">
+        <i class="fa-brands fa-discord"></i>
+      </a>
+      <a href="https://github.com/bootywizard002">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+
+    <div class="feedback">
+      <h2>Do You Like This Website?</h2>
+      <p>
+        Let me know by contacting me on my socials or sending me an email! I'd
+        love to hear your thoughts.
+      </p>
+      <form
+        class="contact-form"
+        action="mailto:ibraheemfarzat@gmail.com"
+        method="POST"
+        enctype="text/plain">
+        <label for="email">Your Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter your email" />
+        <label for="message">Your Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          placeholder="Share your thoughts..."></textarea>
+        <button type="submit">Send Email</button>
+      </form>
+    </div>
+    <script src="js.js"></script>
+  </body>
+</html>

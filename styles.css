@@ -1,0 +1,384 @@
+@font-face {
+  font-family: 'Radiant';
+  src: url(radiant/OPTIRadiant-Bold.otf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Radiant';
+  src: url(radiant/OPTIRadiant-ExtraBold.otf);
+  font-weight: bold;
+}
+
+body {
+  background-color: bisque;
+  font-family: 'Radiant';
+  margin: 0;
+  transition: background-color 1s ease;
+}
+
+.back-image {
+  background-image: url(MyPic1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 1100px;
+  /* min-width: 600px; */
+  background-attachment: fixed;
+}
+
+.socialBar {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  /* z-index: 1000; /* Ensures it stays on top of other elements */
+  /* margin-right: -1vw; Keeps it on the right when scrolling horizontally */
+}
+
+.socialBar i {
+  font-size: 20px; /* Adjusts the size of the icons */
+  color: #ffffff; /* Default color of the icons */
+  background-color: #000000; /* Background color behind the icons */
+  width: 40px; /* Width of the circular background */
+  height: 40px; /* Height of the circular background */
+  line-height: 40px; /* Vertically centers the icon within the circle */
+  text-align: center; /* Horizontally centers the icon within the circle */
+  border-radius: 50%; /* Makes the icons circular */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+  cursor: pointer;
+}
+
+.socialBar i:hover {
+  background-color: #ffffff;
+  transform: scale(1.2);
+}
+.fa-instagram:hover {
+  color: #e1306c;
+}
+.fa-discord:hover {
+  color: #5166f7;
+}
+.fa-github:hover {
+  color: #000000;
+}
+
+.fa-linkedin:hover {
+  color: #006599;
+}
+
+.tag {
+  color: white;
+  position: fixed;
+  left: 75px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  font-size: 25px;
+  z-index: 100;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: rgb(0, 0, 0, 0.8);
+}
+
+.description-box {
+  border: #000000;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: solid;
+  font-size: 30px;
+  padding: 15px 20px;
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -70%);
+
+  background-attachment: fixed;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  text-align: center;
+}
+
+.hobby-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hobby-grid {
+  width: 80%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.hobby-item {
+  background-color: #ffcd91;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  /* background-image: url('Film\ image\ 2.png'); */
+  position: relative;
+  font-size: 25px;
+}
+
+.hobby-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+}
+.film-item::before {
+  background-image: url('Film\ image\ 2.png');
+}
+.book-item::before {
+  background-image: url('book\ image\ 3.jpg');
+}
+.projects-item::before {
+  background-image: url('project\ image.jpg');
+}
+.hobbies-item::before {
+  background-image: url('hobbies\ image.png');
+}
+.hobby-item:hover::before {
+  opacity: 1;
+}
+
+.film-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Hide text initially */
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1; /* Ensure the text appears above the image */
+}
+
+.hobby-item:hover .film-text {
+  opacity: 1; /* Show text on hover */
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+
+.ability-list {
+  column-count: 2;
+  column-gap: 20px;
+  padding: 0;
+  margin: 10px;
+}
+
+.ability-list li {
+  break-inside: avoid;
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+.ability-title {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+h2 {
+  font-weight: normal;
+}
+.ability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  break-inside: avoid;
+  cursor: pointer;
+}
+.ability:hover {
+  font-weight: bold;
+}
+.ability span {
+  flex-grow: 1;
+}
+.ability i {
+  margin-left: 5px;
+}
+
+.fa-star {
+  color: rgb(255, 196, 0);
+}
+
+.abilities-header,
+.abilities-description,
+.ability-list {
+  margin: 10px;
+}
+
+.abilities-header,
+.abilities-description {
+  text-align: center;
+}
+
+/* body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-track {
+  background: #ce2d79;
+}
+body::-webkit-scrollbar-thumb {
+  background: #d2498c;
+} */
+
+:root {
+  font-size: 16px;
+}
+
+.navbar {
+  height: 100vh;
+  width: 140px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #212429;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding-top: 100px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  transform: translateX(140px);
+}
+.navbar.active {
+  transform: translateX(0px);
+}
+
+.navbar-nav {
+  width: 100%;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+.navbar-link {
+  width: 100%;
+  padding: 15px 0;
+  text-align: left;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding-left: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-link i {
+  font-size: 20px; /* Icon size */
+  display: block;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-link:hover {
+  background-color: #e9ecef;
+  color: #00bcd4;
+}
+
+.navbar-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.navbar-link.active i {
+  color: #fff;
+}
+
+.navicon-container {
+  position: fixed;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d7d7d7;
+  margin: 10px;
+  border-radius: 25%;
+  background-color: #212429;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+  z-index: 2;
+}
+
+.navicon-container:hover {
+  /*   background-color: white;
+  color: black; */
+  transform: scale(1.1);
+}
+
+.feedback {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.feedback h2 {
+  margin-bottom: 10px;
+}
+
+.feedback p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  background-color: #0077b5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.contact-form button:hover {
+  background-color: #005b8a;
+}
