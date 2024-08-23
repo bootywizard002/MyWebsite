@@ -75,7 +75,6 @@ function buildAbilities() {
     .then((response) => response.text())
     .then((text) => {
       const results = Papa.parse(text, { header: false, skipEmptyLines: true });
-      console.log('balls');
       console.log(results);
       const data = results.data;
       for (let index = 0; index < data.length; index++) {
@@ -84,19 +83,23 @@ function buildAbilities() {
           titleElement.className = 'ability-title';
           titleElement.textContent = `${data[index][0]}`;
           abilityList.appendChild(titleElement);
-          console.log(`building title ${data[index][0]}`);
         }
         const abilityContainer = document.createElement('li');
         abilityContainer.className = 'ability';
         const ability = document.createElement('span');
         ability.textContent = `${data[index][1]}`;
-        for (let star = 0; star < data[index][2]; star++) {}
         abilityContainer.appendChild(ability);
+        for (let star = 0; star < data[index][2]; star++) {
+          const starsolid = document.createElement('i');
+          starsolid.className = 'fa-solid fa-star';
+          abilityContainer.appendChild(starsolid);
+        }
+        for (let star = data[index][2]; star < 5; star++) {
+          const starsolid = document.createElement('i');
+          starsolid.className = 'fa-regular fa-star';
+          abilityContainer.appendChild(starsolid);
+        }
         abilityList.appendChild(abilityContainer);
-
-        console.log(`building ability ${data[index][1]}`);
-        console.log(`it has ${data[index][2]} stars`);
-        console.log(`it has this description ${data[index][3]}`);
       }
     })
     .catch((error) => {
