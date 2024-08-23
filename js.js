@@ -90,7 +90,7 @@ function buildAbilities() {
         abilityContainer.className = 'ability';
         const ability = document.createElement('span');
         ability.textContent = `${data[index][1]}`;
-
+        for (let star = 0; star < data[index][2]; star++) {}
         abilityContainer.appendChild(ability);
         abilityList.appendChild(abilityContainer);
 
