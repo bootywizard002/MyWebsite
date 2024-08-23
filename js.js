@@ -7,9 +7,10 @@ const hobbiesIcon = document.querySelector('.hobbies-item');
 const projectsIcon = document.querySelector('.projects-item');
 const navigationBar = document.querySelector('.navbar');
 const csvUrl = 'abilities.csv';
+const abilityList = document.querySelector('.ability-list');
 // Event listeners
 navBarIcon.addEventListener('click', navbarPressed);
-window.addEventListener('DOMContentLoaded', csvReader);
+window.addEventListener('DOMContentLoaded', buildAbilities);
 //Hobbygrid
 filmIcon.addEventListener('mouseenter', () => {
   document.body.style.backgroundColor = '#2a2e2f ';
@@ -68,11 +69,43 @@ function resetBackgroundColors() {
   filmIcon.style.backgroundColor = '';
 }
 
-function csvReader() {
+function buildAbilities() {
   console.log('hello');
   fetch(csvUrl)
     .then((response) => response.text())
     .then((text) => {
-      console.log(text);
+      const results = Papa.parse(text, { header: false, skipEmptyLines: true });
+      console.log('balls');
+      console.log(results);
+      const data = results.data;
+      for (let index = 0; index < data.length; index++) {
+        if (data[index][0] !== '') {
+          const titleElement = document.createElement('li');
+          titleElement.className = 'ability-title';
+          titleElement.textContent = `${data[index][0]}`;
+          abilityList.appendChild(titleElement);
+          console.log(`building title ${data[index][0]}`);
+        }
+        const abilityContainer = document.createElement('li');
+        abilityContainer.className = 'ability';
+        const ability = document.createElement('span');
+        ability.textContent = `${data[index][1]}`;
+
+        abilityContainer.appendChild(ability);
+        abilityList.appendChild(abilityContainer);
+
+        console.log(`building ability ${data[index][1]}`);
+        console.log(`it has ${data[index][2]} stars`);
+        console.log(`it has this description ${data[index][3]}`);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching or parsing data:', error);
     });
 }
+
+// function parseCSV(text) {
+//   const rows = text.trim().split('\n');
+//   const data = rows.map((row) => row.split(','));
+//   return data;
+// }
