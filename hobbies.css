@@ -72,7 +72,9 @@
   cursor: pointer;
   transform-origin: left;
   margin-left: auto;
+  text-decoration: none;
 }
+
 .icon-box > :first-child {
   margin-right: auto;
 }
