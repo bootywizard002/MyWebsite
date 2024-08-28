@@ -20,10 +20,14 @@ filmIcon.addEventListener('mouseenter', () => {
 });
 
 bookIcon.addEventListener('mouseenter', () => {
-  document.body.style.backgroundColor = '#B22222';
-  filmIcon.style.backgroundColor = '#E2563D';
-  hobbiesIcon.style.backgroundColor = '#E2563D';
-  projectsIcon.style.backgroundColor = '#E2563D';
+  document.body.style.backgroundColor = '#4D443A';
+  filmIcon.style.backgroundColor = '#DB4C4D';
+  hobbiesIcon.style.backgroundColor = '#DB4C4D';
+  projectsIcon.style.backgroundColor = '#DB4C4D';
+  // document.body.style.backgroundColor = '#B22222';
+  // filmIcon.style.backgroundColor = '#E2563D';
+  // hobbiesIcon.style.backgroundColor = '#E2563D';
+  // projectsIcon.style.backgroundColor = '#E2563D';
 });
 hobbiesIcon.addEventListener('mouseenter', () => {
   document.body.style.backgroundColor = '#1A2634';

@@ -156,7 +156,7 @@ a:hover {
   background-image: url('Film\ image\ 2.png');
 }
 .book-item::before {
-  background-image: url('book\ image\ 3.jpg');
+  background-image: url('book\ image\ 6.jpg');
 }
 .projects-item::before {
   background-image: url('project\ image.jpg');

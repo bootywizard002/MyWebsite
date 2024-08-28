@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hobbies</title>
     <link rel="stylesheet" href="hobbies.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" href="Logo.svg" type="imag/svg+xml" />
   </head>
   <body>
-    <img src="Origami/20230430_091602.jpg" />
+    <div class="image-container">
+      <img class="origami-image" src="Origami/20230430_091602.jpg" />
+      <div class="top-overlay">
+        <span class="image-number">1/2</span>
+        <i class="fa-solid fa-arrow-right-long"></i>
+        <i class="fa-solid fa-arrow-left-long"></i>
+      </div>
+      <div class="bottom-overlay">
+        <div class="icon-box">
+          <i class="fa-solid fa-circle-info"></i>
+          <span class="icon-text">Jo Nakashima</span>
+        </div>
+        <div class="icon-box">
+          <i class="fa-solid fa-circle-arrow-down"></i>
+          <span class="icon-text">Download</span>
+        </div>
+      </div>
+    </div>
     <script src="hobbies.js"></script>
   </body>
 </html>

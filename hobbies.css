@@ -1,4 +1,99 @@
-img {
+/* body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+.image-container {
   width: 30%;
   height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.origami-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bottom-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 5;
+}
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+  transition: width 0.6s ease, opacity 0.3s ease;
+  overflow: hidden;
+  height: 20px;
+  width: 15px;
+  opacity: 0;
+  cursor: pointer;
+  transform-origin: left;
+  margin-left: auto;
+}
+.icon-box > :first-child {
+  margin-right: auto;
+}
+.icon-box > :last-child {
+  margin-right: auto;
+}
+
+.icon-box i {
+  font-size: 15px;
+  color: white;
+}
+
+.icon-box:hover {
+  width: 100px;
+  opacity: 1;
+}
+.icon-box .icon-text {
+  color: white;
+  white-space: nowrap;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth transition for showing text */
+  font-size: 12px;
+  margin-left: 5px; /* Space between icon and text */
+}
+.icon-box:hover .icon-text {
+  opacity: 1;
+}
+/* .icon-text {
+  background-color: brown;
+  color: white;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 12px;
+} */
+.image-container:hover .icon-box {
+  opacity: 1;
+}
+.image-container:hover::after {
+  opacity: 1;
+}
+.image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  height: 10%; /* Adjust the height to only cover the gradient area */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  pointer-events: none; /* Makes the gradient non-interactive */
+  opacity: 0;
 }
