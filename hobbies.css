@@ -18,6 +18,34 @@
   object-fit: cover;
   object-position: center;
 }
+.top-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.top-overlay span,
+.top-overlay i {
+  margin: 0;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  transition: opacity 0.3s ease;
+  height: 15px;
+  width: 15px;
+  padding: 8px;
+  display: flex; /* Enables flexbox alignment */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+}
+.top-overlay i {
+  opacity: 0;
+  cursor: pointer;
+}
 
 .bottom-overlay {
   position: absolute;
@@ -84,6 +112,9 @@
   opacity: 1;
 }
 .image-container:hover::after {
+  opacity: 1;
+}
+.image-container:hover .top-overlay i {
   opacity: 1;
 }
 .image-container::after {
