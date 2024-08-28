@@ -2,13 +2,15 @@
 var modal = document.getElementById('imageModal');
 
 //Get the image and insert it inside the model
-var img = document.querySelector('.origami-image');
+var images = document.querySelectorAll('.origami-image');
 var modalImg = document.getElementById('img01');
 
-img.onclick = function () {
-  modal.style.display = 'block';
-  modalImg.src = this.src;
-};
+images.forEach(function (img) {
+  img.onclick = function () {
+    modal.style.display = 'block';
+    modalImg.src = this.src;
+  };
+});
 
 var span = document.getElementById('close');
 
