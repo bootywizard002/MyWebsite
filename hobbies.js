@@ -149,3 +149,20 @@ function buildOrigami() {
       }
     });
 }
+
+//Show more button click Events
+
+document.getElementById('toggleButton').addEventListener('click', function () {
+  const galleryContainer = document.querySelector('.origami-gallery-container');
+  const buttonIcon = this.querySelector('i');
+
+  if (galleryContainer.style.height === 'auto') {
+    // If expanded, collapse it
+    galleryContainer.style.height = '400vh';
+    this.innerHTML = '<i class="fa fa-chevron-down"></i> Show More';
+  } else {
+    // If collapsed, expand it
+    galleryContainer.style.height = 'auto';
+    this.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
+  }
+});

@@ -23,6 +23,7 @@ body {
   padding: 40px 0;
   height: 400vh;
   overflow: hidden;
+  transition: all 0.5 ease-in-out;
 }
 .origami-gallery {
   display: flex;
@@ -163,18 +164,22 @@ body {
   position: fixed;
   z-index: 10;
   padding-top: 100px;
+  padding-bottom: 100px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   overflow: auto;
+  justify-content: center;
+  align-items: center;
 }
 .modal-content {
   margin: auto;
   display: block;
-  width: 60%;
+  max-width: 50%;
   height: auto;
+  width: auto;
 }
 
 .modal-content {
@@ -308,4 +313,33 @@ a:hover {
   /*   background-color: white;
   color: black; */
   transform: scale(1.1);
+}
+
+.show-more-container {
+  text-align: right;
+  margin: 20px 10px;
+}
+
+#toggleButton {
+  padding: 10px 20px;
+  background-color: #212429;
+  color: white;
+  font-size: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#toggleButton:hover {
+  background-color: #3d444f;
+  transform: scale(1.1);
+}
+
+#toggleButton i {
+  margin-right: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
