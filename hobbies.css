@@ -146,7 +146,7 @@ body {
 .image-container::after {
   content: '';
   position: absolute;
-  bottom: 0px;
+  bottom: 4px;
   left: 0;
   right: 0;
   height: 10%; /* Adjust the height to only cover the gradient area */
