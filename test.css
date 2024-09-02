@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 800px;
+  background-color: white;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 20px;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.details {
+  flex: 2;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.details h2,
+.details p {
+  margin: 5px 0;
+}
+
+.review {
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Class to adjust for narrow screens, controlled by JS */
+.narrow .content-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.narrow .details {
+  padding-left: 0;
+  text-align: center;
+}
+
+.narrow .review {
+  text-align: center;
+}

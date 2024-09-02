@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'Radiant';
+  src: url(radiant/OPTIRadiant-Bold.otf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Radiant';
+  src: url(radiant/OPTIRadiant-ExtraBold.otf);
+  font-weight: bold;
+}
+
+.tag {
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 75px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  font-size: 25px;
+  z-index: 100;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: rgb(0, 0, 0, 0.8);
+}
+
+.navbar {
+  height: 100vh;
+  width: 140px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #212429;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding-top: 100px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  transform: translateX(140px);
+}
+.navbar.active {
+  transform: translateX(0px);
+}
+
+.navbar-nav {
+  width: 100%;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+.navbar-link {
+  width: 100%;
+  padding: 15px 0;
+  text-align: left;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding-left: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-link i {
+  font-size: 20px; /* Icon size */
+  display: block;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-link:hover {
+  background-color: #e9ecef;
+  color: #00bcd4;
+}
+
+.navbar-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.navbar-link.active i {
+  color: #fff;
+}
+
+.navicon-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d7d7d7;
+  margin: 10px;
+  border-radius: 25%;
+  background-color: #212429;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+  z-index: 2;
+}
+
+.navicon-container:hover {
+  /*   background-color: white;
+  color: black; */
+  transform: scale(1.1);
+}
+
+.random {
+  height: 200vh;
+}
+@media (max-width: 800px) {
+  .tag {
+    left: 20px;
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+}

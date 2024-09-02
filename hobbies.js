@@ -154,15 +154,50 @@ function buildOrigami() {
 
 document.getElementById('toggleButton').addEventListener('click', function () {
   const galleryContainer = document.querySelector('.origami-gallery-container');
+  const button = this;
   const buttonIcon = this.querySelector('i');
 
   if (galleryContainer.style.height === 'auto') {
-    // If expanded, collapse it
-    galleryContainer.style.height = '400vh';
+    // If expanded, collapse it and change button to fixed position
+    galleryContainer.style.height = '1500px';
+    button.style.position = 'static'; // Reset position for collapsing state
+    button.style.textAlign = 'right'; // Align the button to the right
+    button.style.margin = '20px 10px'; // Add margin to position the button
     this.innerHTML = '<i class="fa fa-chevron-down"></i> Show More';
   } else {
-    // If collapsed, expand it
+    // If collapsed, expand it and fix button at the bottom right
     galleryContainer.style.height = 'auto';
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.right = '20px';
+    button.style.margin = '0'; // Reset margin
     this.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
+  }
+});
+window.addEventListener('scroll', function () {
+  const galleryContainer = document.querySelector('.origami-gallery-container');
+  const button = document.getElementById('toggleButton');
+
+  // Calculate when to keep the button fixed
+  const rect = galleryContainer.getBoundingClientRect();
+  const containerBottom = rect.bottom;
+  const windowHeight = window.innerHeight;
+
+  if (containerBottom < windowHeight) {
+    // If the container bottom is above the bottom of the viewport, stop fixing the button
+    // button.style.position = 'absolute';
+    // button.style.bottom = '20px';
+    button.style.position = 'static'; // Reset position for collapsing state
+    button.style.textAlign = 'right'; // Align the button to the right
+    button.style.margin = '20px 10px'; // Add margin to position the butto
+  } else if (galleryContainer.style.height === 'auto') {
+    // Keep button fixed
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.right = '20px';
+    button.style.margin = '0'; // Reset margin
+    // button.style.position = 'fixed';
+    // button.style.bottom = '20px';
+    // button.style.right = '20px';
   }
 });

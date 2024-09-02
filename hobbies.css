@@ -13,6 +13,7 @@ body {
   height: auto;
   position: relative;
   overflow: hidden;
+  /* margin-bottom: 40px; */
   /* border: 2px solid black; */
   /* margin: 30px; */
   /* background-color: aqua; */
@@ -20,10 +21,29 @@ body {
 .origami-gallery-container {
   width: 80%;
   margin: 5% 8% 10% 12%;
-  padding: 40px 0;
-  height: 400vh;
+  /* padding: 40px 0; */
+  height: 1500px;
   overflow: hidden;
   transition: all 0.5 ease-in-out;
+  position: relative;
+}
+.origami-gallery-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    /* Fully transparent at the top */ rgba(255, 255, 255, 0.1) 20%,
+    /* Slightly transparent */ rgba(255, 255, 255, 0.3) 40%,
+    /* Gradually more opaque */ rgba(255, 255, 255, 0.7) 70%,
+    /* Stronger opacity */ rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 1) 100% /* Fully opaque at the bottom */
+  );
+  pointer-events: none;
 }
 .origami-gallery {
   display: flex;
@@ -317,7 +337,8 @@ a:hover {
 
 .show-more-container {
   text-align: right;
-  margin: 20px 10px;
+  margin: 20px 10px 50px 10px;
+  position: relative;
 }
 
 #toggleButton {
@@ -342,4 +363,16 @@ a:hover {
 
 html {
   scroll-behavior: smooth;
+}
+
+.random {
+  height: 200vh;
+}
+.mainPlant-container {
+  position: relative;
+  z-index: 10;
+}
+.pin-wrapper {
+  position: relative;
+  z-index: 1;
 }

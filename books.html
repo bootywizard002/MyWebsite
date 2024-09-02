@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+    <link rel="stylesheet" href="reusable.css" />
+    <link rel="stylesheet" href="books.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" href="Logo.svg" type="imag/svg+xml" />
+  </head>
+  <body>
+    <div class="navicon-container">
+      <i class="navbar-icon fa-solid fa-bars"></i>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" class="navbar-link">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="movies.html" class="navbar-link">
+            <i class="fas fa-film"></i>
+            Movies
+          </a>
+        </li>
+        <li>
+          <a href="books.html" class="navbar-link">
+            <i class="fas fa-book"></i>
+            Books
+          </a>
+        </li>
+        <li>
+          <a href="hobbies.html" class="navbar-link">
+            <i class="fas fa-person-skiing"></i>
+            Hobbies
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="navbar-link">
+            <i class="fas fa-diagram-project"></i>
+            Projects
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="tag">
+      <a href="#" onclick="scrollToTop(event)">Farzatci</a>
+    </div>
+    <div class="quote">
+      <h2 class="quote-text">Some random Ass Quote in here.</h2>
+      <h3 class="quote-author">Some wise man</h3>
+    </div>
+    <div class="book-gallery">
+      <span class="category-title">Favourites</span>
+      <hr />
+      <div class="books">
+        <div class="book-wrapper" id="b1984">
+          <div class="book"><img src="book image.png" /></div>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book1"><img src="book image 9.jpg" /></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book1"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book1"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book1"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="random"></div>
+
+    <div class="modal">
+      <div class="modal-content">
+        <i class="fa-solid fa-xmark"></i>
+        <div class="left-wrapper">
+          <div class="modal-image">
+            <img id="modal-img" src="Origami/20230430_091602.jpg" />
+          </div>
+          <div class="general-info">
+            <div class="rating">Google Rating: 91%</div>
+            <div class="genre">Genre: Dark, Serious</div>
+          </div>
+        </div>
+        <div class="right-wrapper">
+          <div class="book-info">
+            <h1 class="Title">1984</h1>
+            <h2 class="author">George my homie</h2>
+            <div class="release-date">Idk let's say 1983</div>
+            <div class="rating">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+          <div class="review">
+            <h3 class="review-header">Review</h3>
+            <p class="review-text">
+              My very interesting review. Lorem, ipsum dolor sit amet
+              consectetur adipisicing elit. Temporibus nesciunt culpa nulla.
+              Recusandae totam dicta, odio velit dolores modi labore suscipit
+              voluptas, voluptate ex saepe architecto ullam laudantium,
+              necessitatibus voluptatibus. Lorem ipsum dolor sit amet
+              consectetur, adipisicing elit. Est repellat, eveniet ex, sint
+              nemo, eaque alias provident dicta debitis similique nesciunt unde
+              amet tempora? Quia quam reiciendis debitis ipsa obcaecati. Lorem
+              ipsum dolor sit amet consectetur, adipisicing elit. Odit,
+              praesentium! Distinctio eos unde itaque nobis asperiores totam qui
+              optio, voluptate illo suscipit tenetur fugit excepturi blanditiis
+              reiciendis ipsum exercitationem laborum.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="reusable.js"></script>
+    <script src="books.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  </body>
+</html>

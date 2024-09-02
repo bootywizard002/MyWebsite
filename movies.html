@@ -4,8 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies</title>
+    <link rel="stylesheet" href="reusable.css" />
+    <link rel="stylesheet" href="movies.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" href="Logo.svg" type="imag/svg+xml" />
   </head>
   <body>
-    <p>movies</p>
+    <div class="navicon-container">
+      <i class="navbar-icon fa-solid fa-bars"></i>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" class="navbar-link">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="movies.html" class="navbar-link">
+            <i class="fas fa-film"></i>
+            Movies
+          </a>
+        </li>
+        <li>
+          <a href="books.html" class="navbar-link">
+            <i class="fas fa-book"></i>
+            Books
+          </a>
+        </li>
+        <li>
+          <a href="hobbies.html" class="navbar-link">
+            <i class="fas fa-person-skiing"></i>
+            Hobbies
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="navbar-link">
+            <i class="fas fa-diagram-project"></i>
+            Projects
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="tag">
+      <a href="#" onclick="scrollToTop(event)">Farzatci</a>
+    </div>
+    <div class="random"></div>
+    <script src="reusable.js"></script>
+    <script src="movies.js"></script>
   </body>
 </html>
