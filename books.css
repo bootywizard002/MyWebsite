@@ -72,6 +72,7 @@ hr {
 }
 
 .stars,
+.fa-star-half-stroke,
 .fa-star {
   margin-top: 5px;
   font-size: 14px;
@@ -89,6 +90,7 @@ hr {
 .book-wrapper {
   text-align: center;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .book-wrapper:hover {
@@ -150,6 +152,7 @@ hr {
   border-radius: 5px;
   padding: 3px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
 .modal-content .fa-xmark:hover {
@@ -178,7 +181,7 @@ hr {
 }
 
 @media (max-width: 600px) {
-  .body {
+  body {
     min-width: 320;
     overflow-x: auto;
   }

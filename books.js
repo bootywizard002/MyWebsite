@@ -1,61 +1,62 @@
-// Selectors
-//api testing
-// const apiKey = 'AIzaSyCo0WpSqy8r6IJFrq_8q2u9gD724WBt8IM';
-// const isbn = '9781398805941';
-// const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${apiKey}`;
-
-// fetch(url)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     if (data.totalItems === 0) {
-//       console.log('No book found with the provided ISBN.');
-//     } else {
-//       console.log(data);
-//     }
-//   })
-//   .catch((error) => {
-//     console.error('Error:', error);
-//   });
-
-// Event Listeners
-
-// Functions
-
 //Modal Functionality
 //when any book is hit
-var bookWrapper = document.querySelectorAll('.book-wrapper');
 const modal = document.querySelector('.modal');
 const modalImg = document.getElementById('modal-img');
 const modalAuthor = document.querySelector('.modal .author');
+const modalGenre = document.querySelector('.modal .genre');
+const modalGoogleRating = document.querySelector('.modal .gRating');
+const modalReview = document.querySelector('.modal .review-text');
+const modalTitle = document.querySelector('.modal .title');
+const modalReleaseDate = document.querySelector('.modal .release-date');
+const starcontainer = document.querySelector('.modal .rating');
+let parsedBooksData = [];
 
-bookWrapper.forEach(function (book) {
-  book.onclick = function () {
-    const bookId = event.currentTarget.id;
-    console.log(bookId);
-    modal.classList.add('show');
-    let bookDetails = bookData[bookId];
-    if (bookDetails) {
-      modalAuthor.textContent = bookDetails[1];
-      modalImg.src = bookDetails[5];
+document
+  .querySelector('.book-gallery')
+  .addEventListener('click', function (event) {
+    if (event.target.closest('.book-wrapper')) {
+      const bookId = event.target.closest('.book-wrapper').id;
+      console.log(bookId);
+      // Show the modal and update its content based on the book ID
+      modal.classList.add('show');
+      modalBookinfo =
+        parsedBooksData[
+          parsedBooksData.findIndex((subArray) => subArray[1] === `${bookId}`)
+        ];
+      console.log(
+        'this is the book info of the book with Id',
+        bookId,
+        modalBookinfo
+      );
+      modalAuthor.textContent = modalBookinfo[3];
+      modalImg.src = modalBookinfo[8];
+      modalGenre.innerHTML = `<b>Genre: </b> ${modalBookinfo[7]}`;
+      modalGoogleRating.innerHTML = `<b>Online Rating:</b> ${modalBookinfo[9]}`;
+      modalReview.textContent = modalBookinfo[5];
+      modalTitle.textContent = modalBookinfo[2];
+      modalReleaseDate.textContent = `Published: ${modalBookinfo[4]}`;
+      let noOfStars = modalBookinfo[6];
+      console.log(noOfStars);
+      starcontainer.replaceChildren();
+      for (let star = 1; star <= noOfStars; star++) {
+        const starsolid = document.createElement('i');
+        starsolid.className = 'fa-solid fa-star';
+        starcontainer.appendChild(starsolid);
+      }
+      if (noOfStars % 1 !== 0) {
+        noOfStars = Math.floor(noOfStars);
+        noOfStars++;
+        const starsolid = document.createElement('i');
+        starsolid.className = 'fa-regular fa-star-half-stroke';
+        starcontainer.appendChild(starsolid);
+      }
+      for (let star = noOfStars; star < 5; star++) {
+        const starsolid = document.createElement('i');
+        starsolid.className = 'fa-regular fa-star ';
+        starcontainer.appendChild(starsolid);
+      }
     }
-  };
-});
-
-let bookData = {
-  b1984: [
-    1984,
-    'George Orwell',
-    1945,
-    'Very nice book I liked it very much',
-    5,
-    'book image.png',
-  ],
-};
+  });
 
 //closing the modal
 const closeButton = document.querySelector('.fa-xmark');
@@ -71,13 +72,12 @@ window.onclick = function (event) {
     modal.classList.remove('show');
   }
 };
-
+// #region building books
 //Create books
 const bookGallery = document.querySelector('.book-gallery');
 
 // const books = document.querySelector('.books');
 const csv = 'books.csv';
-let parsedBooksData = [];
 // window.addEventListener('DOMContentLoaded', buildBooks);
 buildBooks();
 function buildBooks() {
@@ -111,17 +111,26 @@ function buildBooks() {
         bookWrapper.className = 'book-wrapper';
         const book = document.createElement('div');
         book.className = 'book';
-        book.id = `${element[1]}`;
+        bookWrapper.id = `${element[1]}`;
         book.innerHTML = `<img src="${element[8]}">`;
         bookWrapper.appendChild(book);
         books.appendChild(bookWrapper);
         //create stars from csv rating
-        for (let star = 0; star < element[6]; star++) {
+        noOfStars = element[6];
+
+        for (let star = 1; star <= noOfStars; star++) {
           const starsolid = document.createElement('i');
           starsolid.className = 'fa-solid fa-star';
           bookWrapper.appendChild(starsolid);
         }
-        for (let star = element[6]; star < 5; star++) {
+        if (noOfStars % 1 !== 0) {
+          noOfStars = Math.floor(noOfStars);
+          noOfStars++;
+          const starsolid = document.createElement('i');
+          starsolid.className = 'fa-regular fa-star-half-stroke';
+          bookWrapper.appendChild(starsolid);
+        }
+        for (let star = noOfStars; star < 5; star++) {
           const starsolid = document.createElement('i');
           starsolid.className = 'fa-regular fa-star ';
           bookWrapper.appendChild(starsolid);
@@ -129,3 +138,4 @@ function buildBooks() {
       }
     });
 }
+// #endregion
