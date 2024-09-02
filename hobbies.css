@@ -370,7 +370,7 @@ html {
 }
 .mainPlant-container {
   position: relative;
-  z-index: 10;
+  z-index: 9;
 }
 .pin-wrapper {
   position: relative;
