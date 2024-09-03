@@ -27,27 +27,6 @@ window.onclick = function (event) {
   }
 };
 
-function scrollToTop(event) {
-  event.preventDefault(); // Prevent the default anchor behavior
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth', // Smooth scrolling
-  });
-}
-//navbar selectors
-const navBarIcon = document.querySelector('.navicon-container');
-const navBarIconIcon = document.querySelector('.navbar-icon');
-const navigationBar = document.querySelector('.navbar');
-navBarIcon.addEventListener('click', navbarPressed);
-function navbarPressed() {
-  console.log('hello');
-  navigationBar.classList.toggle('active'); // Toggle visibility class
-
-  // Toggle icon classes
-  navBarIconIcon.classList.toggle('fa-xmark');
-  navBarIconIcon.classList.toggle('fa-bars');
-}
-
 //Origami Building
 csvUrl = 'origami.csv';
 window.addEventListener('DOMContentLoaded', buildOrigami);
@@ -153,7 +132,7 @@ function buildOrigami() {
 //Show more button click Events
 
 document.getElementById('toggleButton').addEventListener('click', function () {
-  const galleryContainer = document.querySelector('.origami-gallery-container');
+  const galleryContainer = document.querySelector('.origami-gallery');
   const button = this;
   const buttonIcon = this.querySelector('i');
 
@@ -175,7 +154,7 @@ document.getElementById('toggleButton').addEventListener('click', function () {
   }
 });
 window.addEventListener('scroll', function () {
-  const galleryContainer = document.querySelector('.origami-gallery-container');
+  const galleryContainer = document.querySelector('.origami-gallery');
   const button = document.getElementById('toggleButton');
 
   // Calculate when to keep the button fixed
