@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: #28282b; */
+  background-color: #1f1f1f;
+}
+.wrapper {
+  border: 1px solid black;
+  width: 100%;
+  /* max-width: 1536px; */
+  margin-inline: auto;
+  position: relative;
+  height: 50px;
+  margin-top: 5rem;
+  overflow: hidden;
+  background-color: black;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+.wrapper.wrapper1 {
+  transform: rotate(-10deg);
+  z-index: 2;
+}
+.wrapper.wrapper2 {
+  transform: rotate(80deg);
+}
+.tape-unit .text {
+  font-size: 50px;
+  margin-left: 20px;
+}
+.tape-unit {
+  width: 500px;
+  height: 50px;
+  background-color: black;
+  font-family: 'Helvetica Condensed', 'Helvetica', sans-serif;
+  font-weight: bold;
+  color: #fed926;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  right: max(calc(500px * 3), 100%);
+  animation: scrollright 10s linear infinite;
+}
+.tape-unit .slash {
+  height: 50px;
+  width: 10px;
+  background-color: #fed926;
+  transform: skew(195deg);
+}
+@keyframes scrollright {
+  to {
+    right: -500px;
+  }
+}
+.tape-unit.item1 {
+  animation-delay: calc(10s / 4 * (4 - 1) * -1);
+}
+.tape-unit.item2 {
+  animation-delay: calc(10s / 4 * (4 - 2) * -1);
+}
+.tape-unit.item3 {
+  animation-delay: calc(10s / 4 * (4 - 3) * -1);
+}
+.tape-unit.item4 {
+  animation-delay: calc(10s / 4 * (4 - 4) * -1);
+}
+/*
+Colors to use? 
+  color: #fbaa01;
+  */
