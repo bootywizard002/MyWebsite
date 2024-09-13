@@ -4,6 +4,7 @@ body {
   overflow-x: hidden;
   background-color: #006aff;
   position: relative;
+  cursor: none;
 }
 html {
   font-family: Poppins;
@@ -121,11 +122,12 @@ Colors to use?
 .card-wrapper {
   min-height: 100vh;
   width: 100vw;
-  background: #0b0d15;
+  /* background: #0b0d15; */
+  background: rgba(9, 13, 17, 255);
   color: #a2a5b3;
   align-content: center;
   position: relative;
-  z-index: -1;
+  z-index: 1;
 }
 h1 {
   color: white;
@@ -143,6 +145,9 @@ h1 {
   font-family: 'Montserrat';
   font-size: 70px;
 }
+.card h3 {
+  font-size: 20px;
+}
 
 @property --angle {
   syntax: '<angle>';
@@ -158,11 +163,15 @@ h1 {
   width: 100%;
   background: conic-gradient(
     from var(--angle),
-    #ff4545,
-    #00ff99,
-    #006aff,
-    #ff0095,
-    #ff4545
+    transparent 0%,
+    /* Transparent start */ transparent 35%,
+    /* Transition starts */ orange 40%,
+    /* Start of orange */ orange 45%,
+    /* Full orange at 45% */ transparent 50%,
+    /* Fading out of orange */ transparent 85%,
+    /* Transparent until next transition */ orange 90%,
+    /* Next orange segment starts */ orange 95%,
+    /* Full orange at 95% */ transparent 100% /* End with transparent */
   );
   top: 50%;
   z-index: -1;
@@ -186,4 +195,15 @@ h1 {
 }
 .blank {
   height: 100vh;
+}
+.circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999999;
 }
