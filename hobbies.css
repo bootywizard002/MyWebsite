@@ -17,14 +17,14 @@ body {
   width: 80%;
   margin: 5% 8% 10% 12%;
   /* padding: 40px 0; */
-  height: 1500px;
+  height: 200vh;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 40px;
-  transition: height 0.5s ease-in-out;
+  transition: height 1s cubic-bezier(0.42, 0, 0.58, 1);
 }
 .origami-gallery::after {
   content: '';
@@ -151,6 +151,7 @@ body {
   height: auto;
   position: relative;
   overflow: hidden;
+  object-fit: cover;
   /* margin-bottom: 40px; */
   /* border: 2px solid black; */
   /* margin: 30px; */
@@ -182,7 +183,7 @@ body {
   text-align: right;
   margin: 20px 10px 50px 10px;
   position: static;
-  z-index: 1000;
+  z-index: 1;
 }
 /* .show-more-container {
   text-align: right;
@@ -236,8 +237,9 @@ body {
 }
 .modal-content {
   margin: auto;
+  padding: 25px;
   display: block;
-  max-width: 50%;
+  max-width: 60%;
   height: auto;
   width: auto;
 }
@@ -245,6 +247,9 @@ body {
 .modal-content {
   animation-name: slide-in;
   animation-duration: 1s;
+}
+.whitespace {
+  min-height: 10vh;
 }
 @keyframes slide-in {
   from {
@@ -259,8 +264,8 @@ body {
 
 .modal i {
   position: fixed;
-  top: 15px;
-  left: 35px;
+  top: 4vh;
+  right: 15vw;
   color: white;
   font-size: 25px;
   transition: 0.3s;
