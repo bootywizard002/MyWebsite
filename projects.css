@@ -1,8 +1,17 @@
+:root {
+  --pink: hsl(338, 70%, 55%);
+  --teal: hsl(183, 70%, 62%);
+  --white: hsl(334, 7%, 95%);
+  --maintext: 600px;
+  --secondarytext: 450px;
+  --linktext: 300px;
+  --normaltext: 50px;
+}
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #006aff;
+  background-color: #090d11;
   position: relative;
   cursor: none;
 }
@@ -129,9 +138,7 @@ Colors to use?
   position: relative;
   z-index: 1;
 }
-h1 {
-  color: white;
-}
+
 .card {
   margin: 0 auto;
   padding: 40px;
@@ -144,9 +151,22 @@ h1 {
   position: relative;
   font-family: 'Montserrat';
   font-size: 70px;
+  font-weight: bold;
+  /* color: #fed926; */
+  text-shadow: 0 0 0.25em currentColor;
+  transform-style: preserve-3d;
+  transform: perspective(15000px) rotateY(var(--rotateY))
+    rotateX(var(--rotateX));
+}
+.first {
+  color: var(--pink);
+}
+.second {
+  color: var(--teal);
 }
 .card h3 {
   font-size: 20px;
+  color: var(--white);
 }
 
 @property --angle {
@@ -180,11 +200,37 @@ h1 {
   padding: 6px;
   border-radius: 10px;
   animation: 3s spin linear infinite;
+  transform: translateZ(-50px);
 }
 .card::before {
   filter: blur(1.5rem);
   opacity: 0.5;
 }
+/* .extra-container::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-color: black;
+  filter: blur(15px);
+  opacity: 0.5;
+  z-index: -20;
+  transform: translateZ(-49px);
+  border-radius: 10px;
+} */
+
+/* .extra-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background-color: blue;
+  z-index: -2;
+} */
 @keyframes spin {
   from {
     --angle: 0deg;
@@ -206,4 +252,87 @@ h1 {
   left: 0;
   pointer-events: none;
   z-index: 9999999;
+}
+.gif {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  scale: 1.5;
+  margin: 120px;
+  padding: 20px;
+  /* z-index: 1;
+  position: relative;
+  pointer-events: none; */
+}
+
+.scroller {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.scrolling-text {
+  font-family: 'Montserrat';
+}
+
+.scrolling-text.big {
+  font-size: var(--maintext);
+  color: rgba(153, 136, 127, 0.7);
+  transform: translate(-50px, 0px);
+}
+.scrolling-text.small {
+  font-size: var(--secondarytext);
+  /* color: #cf6442; */
+  background: linear-gradient(
+    to left,
+    #cf6442,
+    #ffa600
+  ); /* Gradient background */
+  -webkit-background-clip: text; /* Clipping background to text */
+  background-clip: text;
+  color: transparent; /* Set the text color to transparent */
+  transform: translate(150px, 150px);
+}
+.scrolling-text.big,
+.scrolling-text.small {
+  position: absolute;
+}
+
+.links-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  font-family: 'Montserrat';
+}
+.link {
+  transition: transform 0.3s linear;
+  /* background-color: pink; */
+  text-decoration: none;
+  color: #99887f;
+  font-size: 300px;
+}
+.link a {
+  text-decoration: none;
+  color: #a2a5b3;
+  transition: color 3.3 ease;
+}
+.link:hover {
+  transform: translateX(30px);
+}
+.link:hover a {
+  color: #082cc4;
+}
+
+.links-section .text {
+  color: #cf6442;
+  font-size: 50px;
+}
+.styled-hr {
+  border: none; /* Remove the default border */
+  height: 2px; /* Height of the line */
+  background-color: #333; /* Color of the line */
+  margin: 20px 0; /* Margin for spacing */
+  width: 80%; /* Width of the line */
 }

@@ -72,3 +72,37 @@ function animateCircles() {
 }
 
 animateCircles();
+
+const pre = document.querySelector('.card');
+
+document.addEventListener('mousemove', (e) => {
+  rotateElement(e, pre);
+});
+
+function rotateElement(event, element) {
+  // get mouse position
+  const x = event.clientX;
+  const y = event.clientY;
+  console.log(x, y);
+
+  // find the middle
+  const middleX = window.innerWidth / 2;
+  const middleY = window.innerHeight / 2;
+  console.log(middleX, middleY);
+
+  // get offset from middle as a percentage
+  // and tone it down a little
+  const offsetX = ((x - middleX) / middleX) * 30;
+  const offsetY = ((y - middleY) / middleY) * 30;
+  console.log(offsetX, offsetY);
+
+  // set rotation
+  element.style.setProperty('--rotateX', -1 * offsetY + 'deg'); // Rotate along X-axis when moving up/down
+  element.style.setProperty('--rotateY', offsetX + 'deg'); // Rotate along Y-axis when moving left/right
+}
+
+//  Scroll Animations
+gsap.to('.scroller 3', {
+  x: 400,
+  duration: 3,
+});
