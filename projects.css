@@ -7,6 +7,39 @@
   --linktext: 300px;
   --normaltext: 50px;
 }
+@media (max-width: 1400px) {
+  :root {
+    --maintext: calc(600px * 0.67);
+    --secondarytext: calc(450px * 0.67);
+    --linktext: calc(300px * 0.67);
+    --normaltext: calc(50px * 0.67);
+  }
+
+  .scrolling-text.big {
+    transform: translate(calc(-50px * 0.67), 0px);
+  }
+
+  .scrolling-text.small {
+    transform: translate(calc(150px * 0.67), calc(150px * 0.67));
+  }
+}
+@media (max-width: 1000px) {
+  :root {
+    --maintext: calc(600px * 0.5);
+    --secondarytext: calc(450px * 0.5);
+    --linktext: calc(300px * 0.5);
+    --normaltext: calc(50px * 0.5);
+  }
+
+  .scrolling-text.big {
+    transform: translate(calc(-50px * 0.5), 0px);
+  }
+
+  .scrolling-text.small {
+    transform: translate(calc(150px * 0.5), calc(150px * 0.5));
+  }
+}
+
 body {
   margin: 0;
   padding: 0;

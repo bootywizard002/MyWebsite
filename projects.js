@@ -109,11 +109,11 @@ gsap.from('.scroller.s2 .scrolling-text.small', {
   duration: 1, // Duration of the animation
   scrollTrigger: {
     trigger: '.scroller.s2', // Trigger the animation when .scroller.s3 comes into view
-    toggleActions: 'restart reverse reverse pause', // Control how the animation behaves on scroll events
+    toggleActions: 'restart pause reverse pause', // Control how the animation behaves on scroll events
     start: 'top 50%', // When the top of .scroller.s3 reaches 80% of the viewport height
     end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
     markers: true, // Enable markers for debugging (remove this in production)
-    scrub: 3,
+    scrub: 5,
   },
 });
 gsap.from('.scroller.s2 .scrolling-text.big', {
@@ -122,11 +122,11 @@ gsap.from('.scroller.s2 .scrolling-text.big', {
   duration: 1, // Duration of the animation
   scrollTrigger: {
     trigger: '.scroller.s2', // Trigger the animation when .scroller.s3 comes into view
-    toggleActions: 'restart reverse reverse pause', // Control how the animation behaves on scroll events
+    toggleActions: 'restart pause reverse pause', // Control how the animation behaves on scroll events
     start: 'top 50%', // When the top of .scroller.s3 reaches 80% of the viewport height
     end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
     markers: true, // Enable markers for debugging (remove this in production)
-    scrub: 3,
+    scrub: 5,
   },
 });
 gsap.from('.scroller.s3 .scrolling-text.small', {
