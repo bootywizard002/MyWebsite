@@ -137,6 +137,7 @@ Colors to use?
   align-content: center;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 .card {

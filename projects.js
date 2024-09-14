@@ -83,18 +83,18 @@ function rotateElement(event, element) {
   // get mouse position
   const x = event.clientX;
   const y = event.clientY;
-  console.log(x, y);
+  //   console.log(x, y);
 
   // find the middle
   const middleX = window.innerWidth / 2;
   const middleY = window.innerHeight / 2;
-  console.log(middleX, middleY);
+  //   console.log(middleX, middleY);
 
   // get offset from middle as a percentage
   // and tone it down a little
   const offsetX = ((x - middleX) / middleX) * 30;
   const offsetY = ((y - middleY) / middleY) * 30;
-  console.log(offsetX, offsetY);
+  //   console.log(offsetX, offsetY);
 
   // set rotation
   element.style.setProperty('--rotateX', -1 * offsetY + 'deg'); // Rotate along X-axis when moving up/down
@@ -102,7 +102,56 @@ function rotateElement(event, element) {
 }
 
 //  Scroll Animations
-gsap.to('.scroller 3', {
-  x: 400,
-  duration: 3,
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.scroller.s2 .scrolling-text.small', {
+  y: '50vh',
+  opacity: 0, // Start with an opacity of 0 (invisible)
+  duration: 1, // Duration of the animation
+  scrollTrigger: {
+    trigger: '.scroller.s2', // Trigger the animation when .scroller.s3 comes into view
+    toggleActions: 'restart reverse reverse pause', // Control how the animation behaves on scroll events
+    start: 'top 50%', // When the top of .scroller.s3 reaches 80% of the viewport height
+    end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
+    markers: true, // Enable markers for debugging (remove this in production)
+    scrub: 3,
+  },
+});
+gsap.from('.scroller.s2 .scrolling-text.big', {
+  y: '-50vh',
+  opacity: 0, // Start with an opacity of 0 (invisible)
+  duration: 1, // Duration of the animation
+  scrollTrigger: {
+    trigger: '.scroller.s2', // Trigger the animation when .scroller.s3 comes into view
+    toggleActions: 'restart reverse reverse pause', // Control how the animation behaves on scroll events
+    start: 'top 50%', // When the top of .scroller.s3 reaches 80% of the viewport height
+    end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
+    markers: true, // Enable markers for debugging (remove this in production)
+    scrub: 3,
+  },
+});
+gsap.from('.scroller.s3 .scrolling-text.small', {
+  x: '100vw',
+  opacity: 0, // Start with an opacity of 0 (invisible)
+  duration: 1, // Duration of the animation
+  scrollTrigger: {
+    trigger: '.scroller.s3', // Trigger the animation when .scroller.s3 comes into view
+    toggleActions: 'restart pause reverse pause', // Control how the animation behaves on scroll events
+    start: 'top 70%', // When the top of .scroller.s3 reaches 80% of the viewport height
+    end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
+    // markers: true, // Enable markers for debugging (remove this in production)
+    scrub: 5,
+  },
+});
+gsap.from('.scroller.s3 .scrolling-text.big', {
+  x: '-100vw',
+  opacity: 0, // Start with an opacity of 0 (invisible)
+  duration: 1, // Duration of the animation
+  scrollTrigger: {
+    trigger: '.scroller.s3', // Trigger the animation when .scroller.s3 comes into view
+    toggleActions: 'restart pause reverse pause', // Control how the animation behaves on scroll events
+    start: 'top 70%', // When the top of .scroller.s3 reaches 80% of the viewport height
+    end: 'bottom 120%', // When the bottom of .scroller.s3 reaches 20% of the viewport height
+    // markers: true, // Enable markers for debugging (remove this in production)
+    scrub: 5,
+  },
 });
