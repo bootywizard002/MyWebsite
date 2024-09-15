@@ -334,6 +334,28 @@ Colors to use?
   position: absolute;
 }
 
+
+
+
+
+
+
+
+@font-face {
+  src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
+    format("woff2");
+  font-family: "Meta";
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+
+
+
+
+
+
 .links-section {
   display: flex;
   flex-direction: column;
@@ -369,4 +391,105 @@ Colors to use?
   background-color: #333; /* Color of the line */
   margin: 20px 0; /* Margin for spacing */
   width: 80%; /* Width of the line */
+}
+
+.link.instagram a{
+	background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+}
+
+
+.link.linked:hover a{
+  font-variation-settings: "wght" 100, "ital" 0;
+  text-shadow: none;
+
+}
+.link.linked a
+{
+  transition: all 0.5s;
+  -webkit-text-stroke: 4px #d6f4f4;
+  font-variation-settings: "wght" 900, "ital" 1;
+  font-size: 15rem;
+  text-align: center;
+  color: transparent;
+  font-family: "Meta", sans-serif;
+  text-shadow: 10px 10px 0px #07bccc,
+    15px 15px 0px #e601c0,
+    20px 20px 0px #e9019a,
+    25px 25px 0px #f40468,
+    45px 45px 10px #482896;
+  cursor: pointer;
+}
+
+.link.github {
+  position: relative;
+}
+
+.link.github a {
+  position: relative;
+  color: #f6d8d5;
+  text-decoration: none;
+  display: inline-block; /* Ensure the link can be animated */
+  transition: color 0.3s ease;
+}
+
+.link.github:hover a {
+  text-shadow: 0.05em 0 0 #ec2225, -0.025em -0.05em 0 #313f97, 0.025em 0.05em 0 #50c878;
+  color: rgba(0, 194, 203, 0.2);
+}
+
+.link.github::before,
+.link.github::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.link.github:hover::before {
+  animation: glitch 650ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.link.github:hover::after {
+  animation: glitch 375ms infinite;
+  clip-path: polygon(0 65%, 100% 20%, 100% 100%, 0 70%);
+  transform: translate(0.0125em, 0.025em);
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes glitch {
+  0% {
+    color: rgba(236, 34, 37, 0.2);
+    text-shadow: 0.05em 0 0 #ec2225, -0.025em -0.05em 0 #313f97, 0.025em 0.05em 0 #50c878;
+  }
+  14% {
+    text-shadow: 0.05em 0 0 #ec2225, -0.025em -0.05em 0 #313f97, 0.025em 0.05em 0 #50c878;
+  }
+  15% {
+    color: #50c878;
+    text-shadow: -0.05em -0.025em 0 #ec2225, 0.025em -0.025em 0 #313f97, -0.05em -0.05em 0 #50c878;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #ec2225, 0.025em -0.025em 0 #313f97, -0.05em -0.05em 0 #50c878;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 #ec2225, -0.025em 0.05em 0 #313f97, 0 -0.05em 0 #50c878;
+  }
+  99% {
+    color: #313f97;
+    text-shadow: 0.025em 0.05em 0 #ec2225, -0.025em 0.05em 0 #313f97, 0 -0.05em 0 #50c878;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 #ec2225, -0.025em -0.025em 0 #313f97, -0.025em -0.05em 0 #50c878;
+  }
 }
