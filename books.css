@@ -11,29 +11,32 @@ body {
 }
 .quote-text {
   font: 24px;
+  font-weight: 400;
 }
 .quote-author {
   font: 18px;
   color: #555;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .book-gallery {
   margin: 20px auto;
-  max-width: 750px;
-  min-width: 300px;
+  max-width: 1300px;
+  min-width: 500px;
 }
 
 .category-title {
-  font-size: 22px;
+  font-size: 25px;
   margin: 20px 20px 0px 20px;
   text-align: left;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .books {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
   padding-bottom: 20px;
   margin: 0px 20px;
@@ -42,13 +45,13 @@ body {
 .book {
   width: 100%;
   aspect-ratio: 2/3;
-  max-width: 150px;
+  max-width: 250px;
   background-color: #e0e0e0;
   margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   position: relative;
-  min-width: 100px;
+  min-width: 150px;
 }
 .book img {
   width: 100%;
@@ -75,7 +78,7 @@ hr {
 .fa-star-half-stroke,
 .fa-star {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 18px;
   color: gold;
 }
 /*  @media screen and (min-width:600px){
@@ -124,21 +127,22 @@ hr {
   margin: 20px;
   background-color: #fff;
   min-height: 200px;
-  padding: 20px;
+  padding: 25px;
   width: 100%;
   max-width: 650px;
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 25px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   transform: scale(0.1);
   transition: transform 0.3s ease;
+  font-size: 18px;
 }
 
 .modal-content .fa-xmark {
-  font-size: 20px;
+  font-size: 25px;
   color: #212429;
   position: absolute;
   right: 10px;
@@ -180,13 +184,20 @@ hr {
   gap: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   body {
-    min-width: 320;
+    min-width: 580;
     overflow-x: auto;
   }
   .books {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
   }
+}
+
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 20px;
 }

@@ -1,186 +1,228 @@
-//Get the modal
-var modal = document.getElementById('imageModal');
-
-//Get the image and insert it inside the model
+// Get the image and insert it inside the modal
 var images = document.querySelectorAll('.origami-image');
 var modalImg = document.getElementById('img01');
+var modal = document.getElementById('imageModal');
 
-// images.forEach(function (img) {
-//   img.onclick = function () {
-//     // modal.style.display = 'block';
-// });
-
+// Close button for the modal
 var span = document.getElementById('close');
-
 span.onclick = function () {
   console.log('the cross was clicked');
   modal.style.display = 'none';
 };
 
+// Close modal when clicking outside of it
 window.onclick = function (event) {
-  //   console.log('window is clicked');
-  if (event.target == modal) {
-    console.log('hit on modal');
+  // Close if clicked outside of the modal content or on the 'close' button
+  if (event.target == modal ) {
+    console.log('Modal closed');
     modal.style.display = 'none';
   }
 };
 
-//Origami Building
-csvUrl = 'origami.csv';
-window.addEventListener('DOMContentLoaded', buildOrigami);
-const column1 = document.getElementById('column01');
-const column2 = document.getElementById('column02');
-let dataArranged = [];
-function buildOrigami() {
-  console.log('buildorigami started');
-  fetch(csvUrl)
+// Origami data storage
+let origamiData = [];
+
+// Function to parse data from CSV
+function parseData(path) {
+  return fetch(path)
     .then((response) => response.text())
     .then((text) => {
+      // Parse the CSV data
       const results = Papa.parse(text, { header: true, skipEmptyLines: true });
-      console.log(results);
-      const data = results.data;
-      const dataSorted = data.sort((a, b) => {
-        if (a.Label === '' && b.Label !== '') {
-          return 1;
-        }
-        if (b.Label === '' && a.Label !== '') {
-          return -1;
-        }
-        return a.Label.localeCompare(b.Label);
-      });
-      dataArranged = Object.values(
-        dataSorted.reduce((acc, item) => {
-          const key = item.Model;
-          if (!acc[key]) {
-            acc[key] = [];
-          }
-          acc[key].push(item);
-          return acc;
-        }, {})
-      );
-      let column1Height = 0;
-      let column2Height = 0;
-      console.log(data);
-      console.log(dataArranged);
-      for (let index = 0; index < dataArranged.length; index++) {
-        let heightRatio =
-          dataArranged[index][0].ImageWidth /
-          dataArranged[index][0].ImageHeight;
-        console.log(heightRatio);
-        // Creating Image container
-        const imageContainer = document.createElement('div');
-        imageContainer.className = `image-container`;
-        imageContainer.id = `${dataArranged[index][0].Title}`;
 
-        // Creating image
-        const origamiImage = document.createElement('img');
-        origamiImage.className = 'origami-image';
-        origamiImage.src = dataArranged[index][0].SourceFile;
-        origamiImage.id = dataArranged[index][0].Title;
+      // Save the parsed data to origamiData
+      origamiData = results.data;
 
-        // Creating top overlay
-        const topOverlay = document.createElement('div');
-        topOverlay.className = 'top-overlay';
-        const topOverlaySpan = document.createElement('span');
-        topOverlaySpan.className = 'image-number';
-        topOverlaySpan.textContent = `${dataArranged[index][0].Label}/${dataArranged[index].length}`;
-        const rightArrow = document.createElement('i');
-        rightArrow.className = 'fa-solid fa-arrow-right-long';
-        const leftArrow = document.createElement('i');
-        leftArrow.className = 'fa-solid fa-arrow-left-long';
+      // Log the parsed data to verify
+      console.log('Parsed Data:', origamiData);
 
-        topOverlay.appendChild(topOverlaySpan);
-        topOverlay.appendChild(rightArrow);
-        topOverlay.appendChild(leftArrow);
-
-        // Creating bottom overlay
-        const link = 'https://jonakashima.com.br/';
-        const bottomOverlay = document.createElement('div');
-        bottomOverlay.classList = 'bottom-overlay';
-
-        const iconBoxInfo = document.createElement('a');
-        iconBoxInfo.className = 'icon-box';
-        iconBoxInfo.href = `${link}`;
-        const infoIcon = document.createElement('i');
-        infoIcon.className = 'fa-solid fa-circle-info';
-        const iconTextInfo = document.createElement('span');
-        iconTextInfo.className = 'icon-text';
-        iconTextInfo.textContent = `${data[index].Artist}`;
-
-        const iconBoxDownload = document.createElement('a');
-        iconBoxDownload.className = 'icon-box';
-        iconBoxDownload.href = `${data[index].SourceFile}`;
-        iconBoxDownload.download = 'Origami Image';
-        const downloadIcon = document.createElement('i');
-        downloadIcon.className = 'fa-solid fa-circle-arrow-down';
-        const iconTextDownload = document.createElement('span');
-        iconTextDownload.className = 'icon-text ';
-        iconTextDownload.textContent = 'Download';
-
-        iconBoxInfo.appendChild(infoIcon);
-        iconBoxInfo.appendChild(iconTextInfo);
-        iconBoxDownload.appendChild(downloadIcon);
-        iconBoxDownload.appendChild(iconTextDownload);
-        bottomOverlay.appendChild(iconBoxInfo);
-        bottomOverlay.appendChild(iconBoxDownload);
-
-        // Append elements to the container
-        imageContainer.appendChild(origamiImage);
-        imageContainer.appendChild(topOverlay);
-        imageContainer.appendChild(bottomOverlay);
-
-        // Click event for the image
-        origamiImage.onclick = function () {
-          // Open the modal
-          modal.style.display = 'block';
-
-          // Clear existing modal content images
-          const existingModalImages =
-            document.querySelectorAll('.modal-content');
-          existingModalImages.forEach((img) => modal.removeChild(img));
-
-          imgSrc = this.id;
-          console.log('Image clicked:', imgSrc); // Log the image source
-
-          // Find the array containing the model of the clicked image
-          const containingArray = dataArranged.find((subArray) =>
-            subArray.some((item) => item.Title === imgSrc)
-          );
-
-          if (containingArray) {
-            console.log('Whole model array:', containingArray);
-
-            // Loop through the related images and add them to the modal
-            containingArray.forEach((element) => {
-              const imageModal = document.createElement('img');
-              imageModal.className = 'modal-content';
-              imageModal.src = element.SourceFile;
-              modal.appendChild(imageModal);
-            });
-          } else {
-            console.log('No matching array found for:', imgSrc);
-          }
-
-          // Optionally add whitespace or other elements
-          const whiteSpace = document.createElement('div');
-          whiteSpace.className = 'whitespace';
-          modal.appendChild(whiteSpace);
-        };
-
-        // Append container to columns based on height ratio
-        if (column1Height >= column2Height) {
-          column2.appendChild(imageContainer);
-          column2Height += heightRatio;
-        } else {
-          column1.appendChild(imageContainer);
-          column1Height += heightRatio;
-        }
-      }
+      // Return the data for further processing
+      return origamiData;
+    })
+    .catch((error) => {
+      console.error('Error fetching or parsing the CSV file:', error);
     });
 }
 
-//Show more button click Events
+// Function to group and label data by model
+function groupAndLabelData() {
+  if (!origamiData || origamiData.length === 0) {
+    console.error('origamiData is empty. Make sure to call parseData() first.');
+    return;
+  }
 
+  // Group data by model
+  let groupedByModel = {};
+
+  origamiData.forEach((item) => {
+    const model = item.Model;
+
+    // Check if the model already has an array in groupedByModel
+    if (!groupedByModel[model]) {
+      // If not, create an empty array for this model
+      groupedByModel[model] = [];
+    }
+
+    // Add the item to the corresponding array in groupedByModel
+    groupedByModel[model].push(item);
+  });
+
+  console.log('Grouped by Model:', groupedByModel);
+
+  // Iterate over the groupedByModel object
+  Object.values(groupedByModel).forEach((itemArray) => {
+    // Iterate over each item in the array and assign a label
+    itemArray.forEach((item, index) => {
+      // Add the label to the item at the same level as Model, ImageHeight, etc.
+      item.label = index + 1;
+    });
+  });
+
+  console.log('Final Grouped by Model:', groupedByModel);
+  dataArranged = groupedByModel;
+}
+
+const csvUrl = 'origami.csv';
+window.addEventListener('DOMContentLoaded', function () {
+  buildOrigami();
+
+  // GSAP ScrollTrigger to pin the origami section
+  gsap.registerPlugin(ScrollTrigger);
+
+// gsap.to('.origami-section', {
+//     scrollTrigger: {
+//       trigger: '.plants-section', // The plants section triggers the pinning effect
+//       start: 'top bottom', // Start when the top of the plants section touches the bottom of the viewport
+//       end: () => `+=${window.innerHeight}`, // End after scrolling through the height of the viewport
+//       pin: '.origami-section', // Pin the origami section in place
+//       pinSpacing: false, // Avoid adding extra space after pinning
+//       scrub: true, // Smooth scrolling
+//       markers: false // Set to true to see the trigger points (for debugging)
+//     }
+//   });
+});
+
+const column1 = document.getElementById('column01');
+const column2 = document.getElementById('column02');
+let dataArranged = [];
+
+function buildOrigami() {
+  console.log('buildorigami started');
+
+  parseData(csvUrl).then(() => {
+    // Call groupAndLabelData after parseData is complete
+    groupAndLabelData();
+
+    let column1Height = 0;
+    let column2Height = 0;
+
+    for (const category in dataArranged) {
+      if (dataArranged.hasOwnProperty(category)) {
+        const items = dataArranged[category];
+
+        if (items.length > 0) {
+          let heightRatio = items[0].ImageHeight / items[0].ImageWidth;
+          console.log(heightRatio);
+
+          // Creating Image container
+          const imageContainer = document.createElement('div');
+          imageContainer.className = `image-container`;
+          imageContainer.id = `${items[0].Title}`;
+
+          // Creating image
+          const origamiImage = document.createElement('img');
+          origamiImage.className = 'origami-image';
+          origamiImage.src = items[0].SourceFile;
+          origamiImage.id = items[0].Title;
+
+          // Creating top overlay
+          const topOverlay = document.createElement('div');
+          topOverlay.className = 'top-overlay';
+          const topOverlaySpan = document.createElement('span');
+          topOverlaySpan.className = 'image-number';
+          topOverlaySpan.textContent = `${items[0].label}/${items.length}`;
+          const rightArrow = document.createElement('i');
+          rightArrow.className = 'fa-solid fa-arrow-right-long';
+          const leftArrow = document.createElement('i');
+          leftArrow.className = 'fa-solid fa-arrow-left-long';
+
+          topOverlay.appendChild(topOverlaySpan);
+          topOverlay.appendChild(rightArrow);
+          topOverlay.appendChild(leftArrow);
+
+          // Add navigation functionality
+          let currentIndex = 0;
+
+          rightArrow.onclick = function () {
+            // Move to the next image, loop to the first if at the end
+            currentIndex = (currentIndex + 1) % items.length;
+            updateImage(currentIndex);
+          };
+
+          leftArrow.onclick = function () {
+            // Move to the previous image, loop to the last if at the beginning
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateImage(currentIndex);
+          };
+
+          function updateImage(index) {
+            // Update the image source
+            origamiImage.src = items[index].SourceFile;
+            // Update the label
+            topOverlaySpan.textContent = `${items[index].label}/${items.length}`;
+          }
+
+          // Creating bottom overlay
+          const link = 'https://jonakashima.com.br/';
+          const bottomOverlay = document.createElement('div');
+          bottomOverlay.classList = 'bottom-overlay';
+
+          const iconBoxInfo = document.createElement('a');
+          iconBoxInfo.className = 'icon-box';
+          iconBoxInfo.href = `${link}`;
+          const infoIcon = document.createElement('i');
+          infoIcon.className = 'fa-solid fa-circle-info';
+          const iconTextInfo = document.createElement('span');
+          iconTextInfo.className = 'icon-text';
+          iconTextInfo.textContent = `${items[0].Artist}`;
+
+          const iconBoxDownload = document.createElement('a');
+          iconBoxDownload.className = 'icon-box';
+          iconBoxDownload.href = `${items[0].SourceFile}`;
+          iconBoxDownload.download = 'Origami Image';
+          const downloadIcon = document.createElement('i');
+          downloadIcon.className = 'fa-solid fa-circle-arrow-down';
+          const iconTextDownload = document.createElement('span');
+          iconTextDownload.className = 'icon-text';
+          iconTextDownload.textContent = 'Download';
+
+          iconBoxInfo.appendChild(infoIcon);
+          iconBoxInfo.appendChild(iconTextInfo);
+          iconBoxDownload.appendChild(downloadIcon);
+          iconBoxDownload.appendChild(iconTextDownload);
+          bottomOverlay.appendChild(iconBoxInfo);
+          bottomOverlay.appendChild(iconBoxDownload);
+
+          // Append elements to the container
+          imageContainer.appendChild(origamiImage);
+          imageContainer.appendChild(topOverlay);
+          imageContainer.appendChild(bottomOverlay);
+
+          // Append container to columns based on height ratio
+          if (column1Height >= column2Height) {
+            column2.appendChild(imageContainer);
+            column2Height += heightRatio;
+          } else {
+            column1.appendChild(imageContainer);
+            column1Height += heightRatio;
+          }
+        }
+      }
+    }
+  });
+}
+
+// Show more button click Events
 document.getElementById('toggleButton').addEventListener('click', function () {
   const galleryContainer = document.querySelector('.origami-gallery');
   const button = this;
@@ -194,7 +236,6 @@ document.getElementById('toggleButton').addEventListener('click', function () {
     button.style.textAlign = 'right'; // Align the button to the right
     button.style.margin = '20px 10px'; // Add margin to position the button
     this.innerHTML = '<i class="fa fa-chevron-down"></i> Show More';
-    // galleryContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
   } else {
     // If collapsed, expand it and fix button at the bottom right
     galleryContainer.style.height = expandedHeight;
@@ -203,10 +244,8 @@ document.getElementById('toggleButton').addEventListener('click', function () {
     button.style.right = '20px';
     button.style.margin = '0'; // Reset margin
     this.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
-    // galleryContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
-
 window.addEventListener('scroll', function () {
   const galleryContainer = document.querySelector('.origami-gallery');
   const button = document.getElementById('toggleButton');

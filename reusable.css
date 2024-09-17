@@ -8,6 +8,12 @@
   src: url(radiant/OPTIRadiant-ExtraBold.otf);
   font-weight: bold;
 }
+body{
+
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 
 .tag {
   color: white;
@@ -18,6 +24,8 @@
   padding: 10px 20px;
   font-size: 25px;
   z-index: 100;
+  font-family: 'Radiant', sans-serif !important;
+  font-weight: normal;
 }
 
 a {
@@ -31,7 +39,7 @@ a:hover {
 
 .navbar {
   height: 100vh;
-  width: 140px;
+  width: 160px;
   position: fixed;
   right: 0;
   top: 0;
@@ -44,7 +52,7 @@ a:hover {
   padding-top: 100px;
   overflow: hidden;
   transition: transform 0.3s ease;
-  transform: translateX(140px);
+  transform: translateX(160px);
 }
 .navbar.active {
   transform: translateX(0px);
@@ -64,13 +72,13 @@ a:hover {
   color: white;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   padding-left: 20px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar-link i {
-  font-size: 20px; /* Icon size */
+  font-size: 25px; /* Icon size */
   display: block;
   margin-bottom: 5px;
   margin-right: 10px;
@@ -112,6 +120,9 @@ a:hover {
   /*   background-color: white;
   color: black; */
   transform: scale(1.1);
+}
+.navbar-icon{
+  font-size: 20px;
 }
 
 .random {

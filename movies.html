@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies</title>
     <link rel="stylesheet" href="reusable.css" />
-    <link rel="stylesheet" href="movies.css" />
+    <link rel="stylesheet" href="books.css" /><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -55,8 +63,96 @@
     <div class="tag">
       <a href="#" onclick="scrollToTop(event)">Farzatci</a>
     </div>
-    <div class="random"></div>
+    <div class="quote">
+      <h2 class="quote-text">Some random Ass Quote in here.</h2>
+      <h3 class="quote-author">Some wise man</h3>
+    </div>
+    <div class="book-gallery">
+      <!-- <span class="category-title">Favourites</span>
+      <hr /> -->
+      <div class="books">
+        <!-- <div class="book-wrapper" id="b1984">
+          <div class="book"><img src="book image.png" /></div>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book2"><img src="book image 9.jpg" /></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book3"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book5"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="book-wrapper">
+          <div class="book" id="book8"></div>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal">
+      <div class="modal-content">
+        <i class="fa-solid fa-xmark"></i>
+        <div class="left-wrapper">
+          <div class="modal-image">
+            <img id="modal-img" src="Origami/20230430_091602.jpg" />
+          </div>
+          <div class="general-info">
+            <div class="gRating">Google Rating: 91%</div>
+            <div class="genre">Genre: Dark, Serious</div>
+          </div>
+        </div>
+        <div class="right-wrapper">
+          <div class="book-info">
+            <h1 class="title"></h1>
+            <h2 class="author"></h2>
+            <div class="release-date"></div>
+            <div class="rating">
+            </div>
+          </div>
+          <div class="review">
+            <h3 class="review-header">Review</h3>
+            <p class="review-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="reusable.js"></script>
     <script src="movies.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
   </body>
 </html>
+
