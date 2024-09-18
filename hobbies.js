@@ -77,8 +77,6 @@ function groupAndLabelData(data) {
     groupedByModel[model].push(item);
   });
 
-  console.log('Grouped by Model:', groupedByModel);
-
   // Iterate over the groupedByModel object
   Object.values(groupedByModel).forEach((itemArray) => {
     // Iterate over each item in the array and assign a label
@@ -88,8 +86,7 @@ function groupAndLabelData(data) {
     });
   });
 
-  console.log('Final Grouped by Model:', groupedByModel);
-  return groupedByModel;
+  return Object.values(groupedByModel);
 }
 
 function buildPlants(csvUrl, data) {
@@ -204,6 +201,7 @@ function buildPlants(csvUrl, data) {
         }
       }
     }
+    bindImageClickEvents();
   });
 }
 function buildOrigami(csvUrl) {
@@ -319,6 +317,7 @@ function buildOrigami(csvUrl) {
         }
       }
     }
+    bindImageClickEvents();
   });
 }
 // Show more button click Events
@@ -417,3 +416,53 @@ window.addEventListener('scroll', function () {
     button.style.margin = '0'; // Reset margin for fixed position
   }
 });
+
+function bindImageClickEvents() {
+  var images = document.querySelectorAll('.origami-image, .plant-image');
+
+  images.forEach((image) => {
+    image.onclick = function () {
+      // Open the modal
+      modal.style.display = 'block';
+
+      // Clear existing modal content images
+      const existingModalImages = document.querySelectorAll('.modal-content');
+      existingModalImages.forEach((img) => modal.removeChild(img));
+      const existingWhitespace = document.querySelectorAll('.whitespace');
+      existingWhitespace.forEach((ws) => modal.removeChild(ws));
+      const imgSrc = this.id;
+      console.log('Image clicked:', imgSrc);
+
+      // Find the array containing the model of the clicked image
+      let containingArray = dataArranged.find((subArray) =>
+        subArray.some((item) => item.Title === imgSrc)
+      );
+
+      // If not found, search in dataArrangedPlants
+      if (!containingArray) {
+        containingArray = dataArrangedPlants.find((subArray) =>
+          subArray.some((item) => item.Title === imgSrc)
+        );
+      }
+
+      if (containingArray) {
+        console.log('Whole model array:', containingArray);
+
+        // Loop through the related images and add them to the modal
+        containingArray.forEach((element) => {
+          const imageModal = document.createElement('img');
+          imageModal.className = 'modal-content';
+          imageModal.src = element.SourceFile;
+          modal.appendChild(imageModal);
+        });
+      } else {
+        console.log('No matching array found for:', imgSrc);
+      }
+
+      // Optionally add whitespace or other elements
+      const whiteSpace = document.createElement('div');
+      whiteSpace.className = 'whitespace';
+      modal.appendChild(whiteSpace);
+    };
+  });
+}
