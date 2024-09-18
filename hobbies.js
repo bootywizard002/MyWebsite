@@ -13,14 +13,24 @@ span.onclick = function () {
 // Close modal when clicking outside of it
 window.onclick = function (event) {
   // Close if clicked outside of the modal content or on the 'close' button
-  if (event.target == modal ) {
+  if (event.target == modal) {
     console.log('Modal closed');
     modal.style.display = 'none';
   }
 };
 
+window.addEventListener('DOMContentLoaded', function () {
+  buildOrigami('origami.csv', dataArranged);
+  buildPlants('plants.csv', dataArrangedPlants);
+});
 // Origami data storage
 let origamiData = [];
+const column1 = document.getElementById('column01');
+const column2 = document.getElementById('column02');
+const column3 = document.getElementById('column03');
+const column4 = document.getElementById('column04');
+let dataArranged = [];
+let dataArrangedPlants = [];
 
 // Function to parse data from CSV
 function parseData(path) {
@@ -45,7 +55,7 @@ function parseData(path) {
 }
 
 // Function to group and label data by model
-function groupAndLabelData() {
+function groupAndLabelData(data) {
   if (!origamiData || origamiData.length === 0) {
     console.error('origamiData is empty. Make sure to call parseData() first.');
     return;
@@ -79,39 +89,129 @@ function groupAndLabelData() {
   });
 
   console.log('Final Grouped by Model:', groupedByModel);
-  dataArranged = groupedByModel;
+  return groupedByModel;
 }
 
-const csvUrl = 'origami.csv';
-window.addEventListener('DOMContentLoaded', function () {
-  buildOrigami();
-
-  // GSAP ScrollTrigger to pin the origami section
-  gsap.registerPlugin(ScrollTrigger);
-
-// gsap.to('.origami-section', {
-//     scrollTrigger: {
-//       trigger: '.plants-section', // The plants section triggers the pinning effect
-//       start: 'top bottom', // Start when the top of the plants section touches the bottom of the viewport
-//       end: () => `+=${window.innerHeight}`, // End after scrolling through the height of the viewport
-//       pin: '.origami-section', // Pin the origami section in place
-//       pinSpacing: false, // Avoid adding extra space after pinning
-//       scrub: true, // Smooth scrolling
-//       markers: false // Set to true to see the trigger points (for debugging)
-//     }
-//   });
-});
-
-const column1 = document.getElementById('column01');
-const column2 = document.getElementById('column02');
-let dataArranged = [];
-
-function buildOrigami() {
-  console.log('buildorigami started');
+function buildPlants(csvUrl, data) {
+  console.log('buildplants started');
 
   parseData(csvUrl).then(() => {
     // Call groupAndLabelData after parseData is complete
-    groupAndLabelData();
+    dataArrangedPlants = groupAndLabelData(origamiData);
+    let column3Height = 0;
+    let column4Height = 0;
+
+    for (const category in dataArrangedPlants) {
+      if (dataArrangedPlants.hasOwnProperty(category)) {
+        const items = dataArrangedPlants[category];
+
+        if (items.length > 0) {
+          let heightRatio = items[0].ImageHeight / items[0].ImageWidth;
+          console.log(heightRatio);
+
+          // Creating Image container
+          const imageContainer = document.createElement('div');
+          imageContainer.className = `image-container`;
+          imageContainer.id = `${items[0].Title}`;
+
+          // Creating image
+          const origamiImage = document.createElement('img');
+          origamiImage.className = 'origami-image';
+          origamiImage.src = items[0].SourceFile;
+          origamiImage.id = items[0].Title;
+
+          // Creating top overlay
+          const topOverlay = document.createElement('div');
+          topOverlay.className = 'top-overlay';
+          const topOverlaySpan = document.createElement('span');
+          topOverlaySpan.className = 'image-number';
+          topOverlaySpan.textContent = `${items[0].label}/${items.length}`;
+          const rightArrow = document.createElement('i');
+          rightArrow.className = 'fa-solid fa-arrow-right-long';
+          const leftArrow = document.createElement('i');
+          leftArrow.className = 'fa-solid fa-arrow-left-long';
+
+          topOverlay.appendChild(topOverlaySpan);
+          topOverlay.appendChild(rightArrow);
+          topOverlay.appendChild(leftArrow);
+
+          // Add navigation functionality
+          let currentIndex = 0;
+
+          rightArrow.onclick = function () {
+            // Move to the next image, loop to the first if at the end
+            currentIndex = (currentIndex + 1) % items.length;
+            updateImage(currentIndex);
+          };
+
+          leftArrow.onclick = function () {
+            // Move to the previous image, loop to the last if at the beginning
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateImage(currentIndex);
+          };
+
+          function updateImage(index) {
+            // Update the image source
+            origamiImage.src = items[index].SourceFile;
+            // Update the label
+            topOverlaySpan.textContent = `${items[index].label}/${items.length}`;
+          }
+
+          // Creating bottom overlay
+          const link = 'https://jonakashima.com.br/';
+          const bottomOverlay = document.createElement('div');
+          bottomOverlay.classList = 'bottom-overlay';
+
+          const iconBoxInfo = document.createElement('a');
+          iconBoxInfo.className = 'icon-box';
+          iconBoxInfo.href = `${link}`;
+          const infoIcon = document.createElement('i');
+          infoIcon.className = 'fa-solid fa-circle-info';
+          const iconTextInfo = document.createElement('span');
+          iconTextInfo.className = 'icon-text';
+          iconTextInfo.textContent = `${items[0].Artist}`;
+
+          const iconBoxDownload = document.createElement('a');
+          iconBoxDownload.className = 'icon-box';
+          iconBoxDownload.href = `${items[0].SourceFile}`;
+          iconBoxDownload.download = 'Origami Image';
+          const downloadIcon = document.createElement('i');
+          downloadIcon.className = 'fa-solid fa-circle-arrow-down';
+          const iconTextDownload = document.createElement('span');
+          iconTextDownload.className = 'icon-text';
+          iconTextDownload.textContent = 'Download';
+
+          iconBoxInfo.appendChild(infoIcon);
+          iconBoxInfo.appendChild(iconTextInfo);
+          iconBoxDownload.appendChild(downloadIcon);
+          iconBoxDownload.appendChild(iconTextDownload);
+          bottomOverlay.appendChild(iconBoxInfo);
+          bottomOverlay.appendChild(iconBoxDownload);
+
+          // Append elements to the container
+          imageContainer.appendChild(origamiImage);
+          imageContainer.appendChild(topOverlay);
+          imageContainer.appendChild(bottomOverlay);
+
+          // Append container to columns based on height ratio
+          if (column3Height >= column4Height) {
+            column4.appendChild(imageContainer);
+            column4Height += heightRatio;
+          } else {
+            column3.appendChild(imageContainer);
+            column3Height += heightRatio;
+          }
+        }
+      }
+    }
+  });
+}
+function buildOrigami(csvUrl) {
+  console.log('buildorigami started');
+
+  parseData(csvUrl).then((origamiData) => {
+    // Call groupAndLabelData after parseData is complete
+    dataArranged = groupAndLabelData(origamiData);
 
     let column1Height = 0;
     let column2Height = 0;
@@ -221,7 +321,6 @@ function buildOrigami() {
     }
   });
 }
-
 // Show more button click Events
 document.getElementById('toggleButton').addEventListener('click', function () {
   const galleryContainer = document.querySelector('.origami-gallery');
@@ -258,6 +357,54 @@ window.addEventListener('scroll', function () {
 
   // Check if the bottom of the gallery is within the viewport
   if (containerBottom <= windowHeight) {
+    // Gallery is fully visible; reset button to static
+    button.style.position = 'static';
+    button.style.textAlign = 'right';
+    button.style.margin = '20px 10px'; // Maintain button styling
+  } else if (galleryContainer.style.height === expandedHeight) {
+    // Gallery is not fully visible; fix button at bottom of viewport
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.right = '20px';
+    button.style.margin = '0'; // Reset margin for fixed position
+  }
+});
+document.getElementById('toggleButton2').addEventListener('click', function () {
+  const galleryContainer = document.querySelector('.plant-gallery');
+  const button = this;
+  const buttonIcon = this.querySelector('i');
+  const expandedHeight = galleryContainer.scrollHeight + 'px';
+
+  if (galleryContainer.style.height === expandedHeight) {
+    // If expanded, collapse it and change button to fixed position
+    galleryContainer.style.height = '200vh';
+    button.style.position = 'static'; // Reset position for collapsing state
+    button.style.textAlign = 'right'; // Align the button to the right
+    button.style.margin = '20px 10px'; // Add margin to position the button
+    this.innerHTML = '<i class="fa fa-chevron-down"></i> Show More';
+  } else {
+    // If collapsed, expand it and fix button at the bottom right
+    galleryContainer.style.height = expandedHeight;
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.right = '20px';
+    button.style.margin = '0'; // Reset margin
+    this.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
+  }
+});
+window.addEventListener('scroll', function () {
+  const galleryContainer = document.querySelector('.plant-gallery');
+  const button = document.getElementById('toggleButton2');
+
+  const expandedHeight = galleryContainer.scrollHeight + 'px';
+  // Calculate the gallery's position relative to the viewport
+  const rect = galleryContainer.getBoundingClientRect();
+  const containerBottom = rect.bottom;
+  const containerTop = rect.top;
+  const windowHeight = window.innerHeight;
+
+  // Check if the bottom of the gallery is within the viewport
+  if (containerBottom <= windowHeight || containerTop >= windowHeight) {
     // Gallery is fully visible; reset button to static
     button.style.position = 'static';
     button.style.textAlign = 'right';

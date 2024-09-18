@@ -38,5 +38,5 @@ def edit_image_tags(folder_path):
     print("All images processed.")
 
 # Prompt the user for the folder path
-folder_path = "Origami"
+folder_path = input("Enter folder Name: ")
 edit_image_tags(folder_path)

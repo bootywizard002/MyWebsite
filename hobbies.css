@@ -13,7 +13,8 @@ body {
   object-fit: cover;
   overflow: hidden;
 }
-.origami-gallery {
+.origami-gallery,
+.plant-gallery {
   width: 80%;
   margin: 5% 8% 10% 12%;
   /* padding: 40px 0; */
@@ -26,7 +27,8 @@ body {
   gap: 40px;
   transition: height 1s cubic-bezier(0.42, 0, 0.58, 1);
 }
-.origami-gallery::after {
+.origami-gallery::after,
+.plant-gallery::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -192,7 +194,8 @@ body {
   width: 100%; 
 } */
 
-#toggleButton {
+#toggleButton,
+#toggleButton2 {
   padding: 10px 20px;
   background-color: #212429;
   color: white;
