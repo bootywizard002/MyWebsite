@@ -271,13 +271,13 @@ function buildOrigami(csvUrl) {
           }
 
           // Creating bottom overlay
-          const link = 'https://jonakashima.com.br/';
+          // const link = 'https://jonakashima.com.br/';
           const bottomOverlay = document.createElement('div');
           bottomOverlay.classList = 'bottom-overlay';
 
           const iconBoxInfo = document.createElement('a');
           iconBoxInfo.className = 'icon-box';
-          iconBoxInfo.href = `${link}`;
+          // iconBoxInfo.href = `${link}`;
           const infoIcon = document.createElement('i');
           infoIcon.className = 'fa-solid fa-circle-info';
           const iconTextInfo = document.createElement('span');
